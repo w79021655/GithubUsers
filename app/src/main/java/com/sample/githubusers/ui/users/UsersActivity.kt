@@ -11,7 +11,7 @@ import com.sample.githubusers.databinding.ActivityUsersBinding
 import com.sample.githubusers.ui.adapter.UsersAdapter
 import com.sample.githubusers.ui.userinfo.UserInfoActivity
 
-class UsersActivity : AppCompatActivity(), IUsersView {
+class UsersActivity : AppCompatActivity(), IUsersContract.IUsersView {
     private lateinit var binding: ActivityUsersBinding
     private lateinit var mAdapter: UsersAdapter
     private var mUsers = ArrayList<UsersItem>()

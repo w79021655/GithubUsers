@@ -4,8 +4,8 @@ import com.sample.githubusers.data.UsersItem
 import com.sample.githubusers.data.network.UserInfoRepository
 
 
-class UserInfoPresenter(_view: IUserInfoView) : IUserInfoPresenter, IUserInfoPresenter.OnFinishedListener {
-    private var view: IUserInfoView? = null
+class UserInfoPresenter(_view: IUserInfoContract.IUserInfoView) : IUserInfoContract.IUserInfoPresenter, IUserInfoContract.IUserInfoRepository.OnFinishedListener {
+    private var view: IUserInfoContract.IUserInfoView? = null
 
     init {
         this.view = _view

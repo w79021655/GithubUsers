@@ -3,8 +3,8 @@ package com.sample.githubusers.ui.users
 import com.sample.githubusers.data.UsersItem
 import com.sample.githubusers.data.network.UsersRepository
 
-class UsersPresenter(_view: IUsersView) : IUsersPresenter, IUsersPresenter.OnFinishedListener {
-    private var view: IUsersView? = null
+class UsersPresenter(_view: IUsersContract.IUsersView) : IUsersContract.IUsersPresenter, IUsersContract.IUsersRepository.OnFinishedListener {
+    private var view: IUsersContract.IUsersView? = null
 
     init {
         this.view = _view

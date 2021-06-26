@@ -1,16 +1,15 @@
 package com.sample.githubusers.data.network
 
 import com.sample.githubusers.data.Users
-import com.sample.githubusers.ui.users.IUsersPresenter
+import com.sample.githubusers.ui.users.IUsersContract
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.http.Query
 
-class UsersRepository {
+class UsersRepository: IUsersContract.IUsersRepository {
     private val apiService: IApiConfig = RetrofitClient.instance.api
 
-    fun getUsers(perPage: Int, since: Int, onFinishedListener: IUsersPresenter.OnFinishedListener) {
+    override fun getUsers(perPage: Int, since: Int, onFinishedListener: IUsersContract.IUsersRepository.OnFinishedListener) {
         val task = apiService.getUsers(perPage, since)
 
         task.enqueue(object : Callback<Users> {

@@ -9,7 +9,7 @@ import com.sample.githubusers.data.UsersItem
 import com.sample.githubusers.databinding.ActivityUserInfoBinding
 import com.sample.githubusers.ui.users.UsersActivity
 
-class UserInfoActivity : AppCompatActivity(), IUserInfoView {
+class UserInfoActivity : AppCompatActivity(), IUserInfoContract.IUserInfoView {
     private lateinit var binding: ActivityUserInfoBinding
     private var login: String? = null
 

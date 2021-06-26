@@ -1,15 +1,15 @@
 package com.sample.githubusers.data.network
 
 import com.sample.githubusers.data.UsersItem
-import com.sample.githubusers.ui.userinfo.IUserInfoPresenter
+import com.sample.githubusers.ui.userinfo.IUserInfoContract
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class UserInfoRepository {
+class UserInfoRepository: IUserInfoContract.IUserInfoRepository {
     private val apiService: IApiConfig = RetrofitClient.instance.api
 
-    fun getUserInfo(unerName: String, onFinishedListener: IUserInfoPresenter.OnFinishedListener) {
+    override fun getUserInfo(unerName: String, onFinishedListener: IUserInfoContract.IUserInfoRepository.OnFinishedListener) {
         val task = apiService.getUserInfo(unerName)
 
         task.enqueue(object : Callback<UsersItem> {
