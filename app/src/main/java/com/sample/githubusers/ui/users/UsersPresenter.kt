@@ -14,6 +14,10 @@ class UsersPresenter(_view: IUsersContract.IUsersView) : IUsersContract.IUsersPr
         UsersRepository().getUsers(perPage, since, this)
     }
 
+    override fun onDestroy() {
+        view = null
+    }
+
     override fun onFinished(users: ArrayList<UsersItem>?) {
         view!!.onUsersResult(users)
     }

@@ -8,7 +8,7 @@ data class UsersItem(
     @SerializedName("avatar_url")
     var avatarUrl: String,
     @SerializedName("bio")
-    var bio: Any,
+    var bio: Any?,
     @SerializedName("blog")
     var blog: String,
     @SerializedName("company")
@@ -16,7 +16,7 @@ data class UsersItem(
     @SerializedName("created_at")
     var createdAt: String,
     @SerializedName("email")
-    var email: Any,
+    var email: Any?,
     @SerializedName("events_url")
     var eventsUrl: String,
     @SerializedName("followers")

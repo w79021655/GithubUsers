@@ -13,7 +13,7 @@ interface IUsersContract {
 
         fun getUsers(perPage: Int, since: Int)
 
-
+        fun onDestroy()
     }
 
     interface IUsersRepository {

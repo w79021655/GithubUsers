@@ -13,6 +13,7 @@ interface IUserInfoContract {
 
         fun getUserInfo(unerName:String)
 
+        fun onDestroy()
     }
 
     interface IUserInfoRepository {

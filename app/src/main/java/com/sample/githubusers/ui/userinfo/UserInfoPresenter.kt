@@ -15,6 +15,10 @@ class UserInfoPresenter(_view: IUserInfoContract.IUserInfoView) : IUserInfoContr
        UserInfoRepository().getUserInfo(unerName, this)
     }
 
+    override fun onDestroy() {
+        view = null
+    }
+
     override fun onFinished(userItem: UsersItem?) {
         view!!.onUserInfoResult(userItem!!)
     }

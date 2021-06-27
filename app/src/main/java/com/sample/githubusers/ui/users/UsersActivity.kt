@@ -14,6 +14,7 @@ import com.sample.githubusers.ui.userinfo.UserInfoActivity
 class UsersActivity : AppCompatActivity(), IUsersContract.IUsersView {
     private lateinit var binding: ActivityUsersBinding
     private lateinit var mAdapter: UsersAdapter
+    private lateinit var usersPresenter: UsersPresenter
     private var mUsers = ArrayList<UsersItem>()
     private var isNext = true
     private var since: Int = 0
@@ -28,8 +29,15 @@ class UsersActivity : AppCompatActivity(), IUsersContract.IUsersView {
         binding = ActivityUsersBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        usersPresenter = UsersPresenter(this)
+
         setupUI()
         fetchUsers(since)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        usersPresenter.onDestroy()
     }
 
     private fun setupUI() {
@@ -54,10 +62,7 @@ class UsersActivity : AppCompatActivity(), IUsersContract.IUsersView {
 
     private fun fetchUsers(since: Int) {
         binding.loading.visibility = View.VISIBLE
-        Thread(Runnable {
-            val usersPresenter = UsersPresenter(this)
-            usersPresenter.getUsers(KEY.PAGE_COUNT, since)
-        }).start()
+        usersPresenter.getUsers(KEY.PAGE_COUNT, since)
     }
 
     private var listener = object : UsersAdapter.OnItemClickListener {

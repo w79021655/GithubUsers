@@ -11,6 +11,7 @@ import com.sample.githubusers.ui.users.UsersActivity
 
 class UserInfoActivity : AppCompatActivity(), IUserInfoContract.IUserInfoView {
     private lateinit var binding: ActivityUserInfoBinding
+    private lateinit var userInfoPresenter: UserInfoPresenter
     private var login: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -22,14 +23,17 @@ class UserInfoActivity : AppCompatActivity(), IUserInfoContract.IUserInfoView {
         login = intent.extras!!.getString(UsersActivity.KEY.LOGIN)
 
         binding.loading.visibility = View.VISIBLE
-        Thread(Runnable {
-            val usersPresenter = UserInfoPresenter(this)
-            usersPresenter.getUserInfo(login!!)
-        }).start()
+        userInfoPresenter = UserInfoPresenter(this)
+        userInfoPresenter.getUserInfo(login!!)
 
         binding.close.setOnClickListener {
             finish()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        userInfoPresenter.onDestroy()
     }
 
     override fun onUserInfoResult(userItem: UsersItem?) {
